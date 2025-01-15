@@ -2,4 +2,5 @@ groq
 requests
 bs4
 streamlit
+html5lib
 
