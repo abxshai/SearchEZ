@@ -1,5 +1,5 @@
-Groq
+groq
 requests
-BeautifulSoup
+bs4
 streamlit
 time
