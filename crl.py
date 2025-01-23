@@ -17,11 +17,20 @@ def fetch_website_content(url):
     try:
         r = requests.get(url)
         r.raise_for_status()  # Raise an HTTPError for bad responses
-        soup = BeautifulSoup(r.content, 'html5lib')  # Ensure 'html5lib' is installed
-        return soup.prettify()
+        soup = BeautifulSoup(html_content, 'html.parser') 
+        text_content = element.get_text()
+
+        
+
+
+# Step 6: Print the extracted text
+
+
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching the website: {e}")
         return None
+
+
 
 
 # Function to get LLM reply
@@ -64,6 +73,8 @@ def get_llm_reply(user_input, word_placeholder):
         else:
             st.error(f"Error generating LLM reply: {e}")
         return None
+
+
 
 
 # Streamlit Interface
