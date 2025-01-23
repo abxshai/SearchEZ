@@ -15,15 +15,11 @@ groq_client = Groq(api_key=GROQ_API_KEY)
 # Function to fetch and process website content
 def fetch_website_content(url):
     try:
-        r = requests.get(url)
-        r.raise_for_status()  # Raise an HTTPError for bad responses
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an HTTPError for bad responses
         soup = BeautifulSoup(html_content, 'html.parser') 
-        text_content = element.get_text()
+        text_content = response.get_text()
 
-        
-
-
-# Step 6: Print the extracted text
 
 
     except requests.exceptions.RequestException as e:
@@ -50,7 +46,7 @@ def get_llm_reply(user_input, word_placeholder):
                         "and summarize the information in bullet format with insights. Keep the information accurate and clear."
                     ),
                 },
-                {"role": "user", "content": user_input},
+                {"role": "user", "content": text_content},
             ],
             temperature=1,
             max_tokens=1024,
@@ -121,5 +117,3 @@ def main():
         st.write(f"Rate limit error? {'Yes' if st.session_state.get('rate_limit_error', False) else 'No'}")
 
 
-if __name__ == "__main__":
-    main()
